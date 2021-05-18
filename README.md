@@ -1,1 +1,2 @@
 [![nataliagourova](https://circleci.com/gh/nataliagourova/QuizApp.svg?style=svg)](https://app.circleci.com/pipelines/github/nataliagourova)
+[![codecov](https://codecov.io/gh/nataliagourova/QuizApp/branch/main/graph/badge.svg?token=UQKBABLN45)](https://codecov.io/gh/nataliagourova/QuizApp)

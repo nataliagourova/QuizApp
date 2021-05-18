@@ -10,7 +10,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.QuizApp">
+        android:theme="@style/Theme.QuizApp"
+        android:requestLegacyExternalStorage="true">
         <activity android:name=".WinnersActivity"></activity>
         <!--
                Set to true if your app is Standalone, that is, it does not require the handheld
@@ -32,4 +33,6 @@
         <activity android:name=".MainActivity" />
     </application>
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 </manifest>

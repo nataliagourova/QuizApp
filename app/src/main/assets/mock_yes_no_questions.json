@@ -1,0 +1,105 @@
+{
+  "response_code":0,
+  "results":[
+    {
+      "category":"Entertainment: Cartoon & Animations",
+      "type":"boolean",
+      "difficulty":"easy",
+      "question":"In the &quot;Shrek&quot; film franchise, Donkey is played by Eddie Murphy.",
+      "correct_answer":"True",
+      "incorrect_answers":[
+        "False"
+      ]
+    },
+    {
+      "category":"Geography",
+      "type":"boolean",
+      "difficulty":"easy",
+      "question":"Greenland is covered with grass and Iceland covered with ice.",
+      "correct_answer":"False",
+      "incorrect_answers":[
+        "True"
+      ]
+    },
+    {
+      "category":"General Knowledge",
+      "type":"boolean",
+      "difficulty":"medium",
+      "question":"The US emergency hotline is 911 because of the September 11th terrorist attacks.",
+      "correct_answer":"False",
+      "incorrect_answers":[
+        "True"
+      ]
+    },
+    {
+      "category":"Entertainment: Japanese Anime & Manga",
+      "type":"boolean",
+      "difficulty":"easy",
+      "question":"In Kill La Kill, the weapon of the main protagonist is a katana. ",
+      "correct_answer":"False",
+      "incorrect_answers":[
+        "True"
+      ]
+    },
+    {
+      "category":"Entertainment: Board Games",
+      "type":"boolean",
+      "difficulty":"easy",
+      "question":"The Angry Video Game Nerd&#039;s alter ego is &quot;Board James&quot;.",
+      "correct_answer":"True",
+      "incorrect_answers":[
+        "False"
+      ]
+    },
+    {
+      "category":"Animals",
+      "type":"boolean",
+      "difficulty":"easy",
+      "question":"A caterpillar has more muscles than humans do.",
+      "correct_answer":"True",
+      "incorrect_answers":[
+        "False"
+      ]
+    },
+    {
+      "category":"Politics",
+      "type":"boolean",
+      "difficulty":"easy",
+      "question":"Donald Trump won the popular vote in the 2016 United States presidential election.",
+      "correct_answer":"False",
+      "incorrect_answers":[
+        "True"
+      ]
+    },
+    {
+      "category":"Science & Nature",
+      "type":"boolean",
+      "difficulty":"easy",
+      "question":"Water always boils at 100&deg;C, 212&deg;F, 373.15K, no matter where you are.",
+      "correct_answer":"False",
+      "incorrect_answers":[
+        "True"
+      ]
+    },
+    {
+      "category":"General Knowledge",
+      "type":"boolean",
+      "difficulty":"medium",
+      "question":"Popcorn was invented in 1871 by Frederick W. Rueckheim in the USA where he sold the snack on the streets of Chicago.",
+      "correct_answer":"False",
+      "incorrect_answers":[
+        "True"
+      ]
+    },
+    {
+      "category":"Entertainment: Books",
+      "type":"boolean",
+      "difficulty":"easy",
+      "question":"The Harry Potter series of books, combined, are over 1,000,000 words in length.",
+      "correct_answer":"True",
+      "incorrect_answers":[
+        "False"
+      ]
+    }
+  ]
+}

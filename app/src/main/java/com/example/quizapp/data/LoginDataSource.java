@@ -1,6 +1,6 @@
 package com.example.quizapp.data;
 
-import com.example.quizapp.data.model.LoggedInUser;
+import  com.example.quizapp.data.model.LoggedInUser;
 
 import java.io.IOException;
 

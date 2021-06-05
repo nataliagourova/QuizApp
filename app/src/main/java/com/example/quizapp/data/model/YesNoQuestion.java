@@ -1,5 +1,7 @@
 package com.example.quizapp.data.model;
 
+import org.json.JSONObject;
+
 public class YesNoQuestion {
     private boolean isTrue;
     private String categoryName;
@@ -23,7 +25,15 @@ public class YesNoQuestion {
         return questionText;
     }
 
-    public static YesNoQuestion fromJson(String json) {
-        return null;
+    public static YesNoQuestion fromJson(JSONObject json) {
+        try {
+            return new YesNoQuestion(
+                    json.getString("correct_answer").equals("True"),
+                    json.getString("category"),
+                    json.getString("question")
+            );
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 }

@@ -5,8 +5,13 @@ import android.content.Context;
 import com.example.quizapp.data.model.QuestionCategory;
 import com.example.quizapp.data.model.YesNoQuestion;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 public class MockOpenTrivia {
@@ -19,15 +24,23 @@ public class MockOpenTrivia {
         this.questions = questions;
     }
 
+    public List<QuestionCategory> getCategories() {
+        return categories;
+    }
+
+    public List<YesNoQuestion> getYesNoQuestions(int numberOfQuestions) {
+        return questions;
+    }
+
     public static MockOpenTrivia loadFromAssets(Context context) {
         try {
-            String categoriesJson = loadMockCategoriesJson(context);
-            String questionsJson = loadMockQuestionsJson(context);
+            List<QuestionCategory> categories = parseMockCategories(loadMockCategoriesJson(context));
+            List<YesNoQuestion> questions = parseMockQuestions(loadMockQuestionsJson(context));
+
+            return new MockOpenTrivia(categories, questions);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-
-        return new MockOpenTrivia(null, null);
     }
 
     private static String loadMockCategoriesJson(Context context) throws IOException {
@@ -48,11 +61,27 @@ public class MockOpenTrivia {
         return new String(buffer, "UTF-8");
     }
 
-    public List<QuestionCategory> getCategories() {
+    private static List<QuestionCategory> parseMockCategories(String mockCategoriesJson) throws JSONException {
+        JSONObject obj = new JSONObject(mockCategoriesJson);
+        JSONArray categoriesJsonArr = obj.getJSONArray("trivia_categories");
+
+        List<QuestionCategory> categories = new ArrayList<>(categoriesJsonArr.length());
+
+        for (int i = 0; i < categoriesJsonArr.length(); i++) {
+            categories.add(QuestionCategory.fromJson(categoriesJsonArr.getJSONObject(i)));
+        }
         return categories;
     }
 
-    public List<YesNoQuestion> getYesNoQuestions(int numberOfQuestions) {
+    private static List<YesNoQuestion> parseMockQuestions(String mockQuestionsJson) throws JSONException {
+        JSONObject obj = new JSONObject(mockQuestionsJson);
+        JSONArray questionsJsonArr = obj.getJSONArray("results");
+
+        List<YesNoQuestion> questions = new ArrayList<>(questionsJsonArr.length());
+
+        for (int i = 0; i < questionsJsonArr.length(); i++) {
+            questions.add(YesNoQuestion.fromJson(questionsJsonArr.getJSONObject(i)));
+        }
         return questions;
     }
 }

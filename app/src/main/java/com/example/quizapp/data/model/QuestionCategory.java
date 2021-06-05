@@ -1,5 +1,7 @@
 package com.example.quizapp.data.model;
 
+import org.json.JSONObject;
+
 public class QuestionCategory {
     private int id;
     private String name;
@@ -17,7 +19,11 @@ public class QuestionCategory {
         return id;
     }
 
-    public static QuestionCategory fromJson(String json) {
-        return null;
+    public static QuestionCategory fromJson(JSONObject json) {
+        try {
+            return new QuestionCategory(json.getInt("id"), json.getString("name"));
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 }

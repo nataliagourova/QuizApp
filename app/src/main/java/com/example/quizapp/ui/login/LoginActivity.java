@@ -113,7 +113,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private void transferToMainActivity(LoggedInUserView model) {
         String welcome = getString(R.string.welcome) + model.getDisplayName();
-        Toast.makeText(getApplicationContext(), welcome, Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(), welcome, Toast.LENGTH_SHORT).show();
 
         Intent mainActivityIntent = new Intent(this, MainActivity.class);
         mainActivityIntent.putExtra(MainActivity.NAME_EXTRA, model.getDisplayName());

@@ -12,6 +12,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class MockOpenTrivia {
@@ -28,8 +29,10 @@ public class MockOpenTrivia {
         return categories;
     }
 
-    public List<YesNoQuestion> getYesNoQuestions(int numberOfQuestions) {
-        return questions;
+    public List<YesNoQuestion> getYesNoQuestions(int numberOfQuestions, QuestionCategory category) {
+        List<YesNoQuestion> questionForCategory = new ArrayList<>(questions);
+        Collections.shuffle(questionForCategory);
+        return questionForCategory;
     }
 
     public static MockOpenTrivia loadFromAssets(Context context) {

@@ -3,24 +3,26 @@ package com.example.quizapp.ui;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.quizapp.CorrectAnswerTracker;
 import com.example.quizapp.R;
 import com.example.quizapp.data.model.YesNoQuestion;
-
-import org.jetbrains.annotations.NotNull;
 
 public class YesNoQuestionRecyclerViewHolder extends RecyclerView.ViewHolder {
     private TextView questionText;
     private Button trueButton;
     private Button falseButton;
     private YesNoQuestion question;
+    private int position;
+    private CorrectAnswerTracker correctAnswerTracker;
 
-    public YesNoQuestionRecyclerViewHolder(@NonNull @NotNull View itemView) {
+    public YesNoQuestionRecyclerViewHolder(
+            View itemView,
+            CorrectAnswerTracker correctAnswerTracker) {
         super(itemView);
+        this.correctAnswerTracker = correctAnswerTracker;
         questionText = itemView.findViewById(R.id.question_item_text);
         trueButton = itemView.findViewById(R.id.question_item_true_button);
         falseButton = itemView.findViewById(R.id.question_item_false_button);
@@ -28,32 +30,33 @@ public class YesNoQuestionRecyclerViewHolder extends RecyclerView.ViewHolder {
         falseButton.setOnClickListener(v -> checkIfFalse());
     }
 
-    public void setQuestion(YesNoQuestion question) {
+    public void setQuestion(int position, YesNoQuestion question) {
         this.questionText.setText(question.getQuestionText());
         this.question = question;
+        this.position = position;
     }
 
     private void checkIfTrue() {
         if (question.isTrue()) {
-            showCorrectToast();
+            reportCorrect();
         }
 
-        showIncorrectToast();
+        reportIncorrect();
     }
 
     private void checkIfFalse() {
         if (question.isTrue()) {
-            showIncorrectToast();
+            reportIncorrect();
         }
 
-        showCorrectToast();
+        reportCorrect();
     }
 
-    private void showCorrectToast() {
-        Toast.makeText(trueButton.getContext(), "Correct!", Toast.LENGTH_SHORT).show();
+    private void reportCorrect() {
+        correctAnswerTracker.onQuestionAnswered(position, true);
     }
 
-    private void showIncorrectToast() {
-        Toast.makeText(trueButton.getContext(), "Incorrect!", Toast.LENGTH_SHORT).show();
+    private void reportIncorrect() {
+        correctAnswerTracker.onQuestionAnswered(position, false);
     }
 }

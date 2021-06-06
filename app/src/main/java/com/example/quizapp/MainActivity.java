@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,7 +20,7 @@ import com.example.quizapp.ui.QuestionsRecyclerViewAdapter;
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements CorrectCountTracker {
 
     public static final String NAME_EXTRA = "name_extra";
 
@@ -28,6 +29,10 @@ public class MainActivity extends AppCompatActivity {
     private Spinner categoriesSpinner;
     private RecyclerView questionsRecyclerView;
     private QuestionsRecyclerViewAdapter questionsAdapter;
+    private Button correctCountButton;
+    private TextView correctCountText;
+    private int correctCount;
+    private int totalCount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,14 +47,17 @@ public class MainActivity extends AppCompatActivity {
                 new ArrayAdapter<>(this, R.layout.category_spinner_item, mockOpenTrivia.getCategories()));
         categoriesSpinner.setOnItemSelectedListener(selectCategory(this));
 
-        questionsAdapter = new QuestionsRecyclerViewAdapter();
+        questionsAdapter = new QuestionsRecyclerViewAdapter(this);
         questionsRecyclerView.setAdapter(questionsAdapter);
+        correctCountButton.setOnClickListener(v -> onOkButtonPressed());
     }
 
     private void findViews() {
         welcomeText = findViewById(R.id.main_welcome_txt);
         categoriesSpinner = findViewById(R.id.categories_spin);
         questionsRecyclerView = findViewById(R.id.questions_recycler_view);
+        correctCountButton = findViewById(R.id.correct_count_btn);
+        correctCountText = findViewById(R.id.correct_count_text);
     }
 
     private AdapterView.OnItemSelectedListener selectCategory(Context context) {
@@ -72,5 +80,16 @@ public class MainActivity extends AppCompatActivity {
         List<YesNoQuestion> questions = mockOpenTrivia.getYesNoQuestions(10, category);
         questionsAdapter.setQuestions(questions);
 
+    }
+
+    @Override
+    public void onCorrectCountChanged(int correctCount, int totalCount) {
+        this.correctCount = correctCount;
+        this.totalCount = totalCount;
+        correctCountText.setText("Correct " + correctCount + " out of " + totalCount);
+    }
+
+    private void onOkButtonPressed() {
+        Toast.makeText(this, correctCountText.getText().toString(), Toast.LENGTH_SHORT).show();
     }
 }
